@@ -4,10 +4,13 @@ from pydantic import BaseModel
 from .order_details import OrderDetail
 
 
-
 class OrderBase(BaseModel):
-    customer_name: str
-    description: Optional[str] = None
+    customer_id: int
+    promo_id: Optional[int] = None
+    tracking_number: str
+    order_status: str = "Pending"
+    total_price: float
+    order_type: str
 
 
 class OrderCreate(OrderBase):
@@ -15,8 +18,12 @@ class OrderCreate(OrderBase):
 
 
 class OrderUpdate(BaseModel):
-    customer_name: Optional[str] = None
-    description: Optional[str] = None
+    customer_id: Optional[int] = None
+    promo_id: Optional[int] = None
+    tracking_number: Optional[str] = None
+    order_status: Optional[str] = None
+    total_price: Optional[float] = None
+    order_type: Optional[str] = None
 
 
 class Order(OrderBase):
